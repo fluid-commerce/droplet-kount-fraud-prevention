@@ -52,10 +52,9 @@ variable "ipv4_enabled" {
   default     = true
 }
 
-# variable "private_network" {
-#   description = "Private network"
-#   type        = string
-#   default     = "projects/fluid-417204/global/networks/default"
-# }
-#
+variable "private_network_database" {
+  description = "Private network"
+  type        = string
+}
+
 

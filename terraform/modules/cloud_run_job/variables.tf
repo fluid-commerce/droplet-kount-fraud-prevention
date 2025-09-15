@@ -33,8 +33,13 @@ variable "cloud_sql_instances_job" {
   type        = list(string)
 }
 
-variable "vpc_connector_job" {
-  description = "VPC connector"
+variable "vpc_network_job" {
+  description = "VPC network"
+  type        = string
+}
+
+variable "vpc_subnet_job" {
+  description = "VPC subnet"
   type        = string
 }
 

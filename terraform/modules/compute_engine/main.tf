@@ -18,8 +18,8 @@ resource "google_compute_instance" "compute_instance" {
   }
 
   network_interface {
-    network    = "default"
-    subnetwork = "fluid-compute-workers-subnet"
+    network    = "fluid-egress-vpc"
+    subnetwork = "fluid-compute-workers-europe-subnet"
   }
 
   metadata = {

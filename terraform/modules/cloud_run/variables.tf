@@ -23,8 +23,13 @@ variable "purpose_cloud_run" {
   type        = string
 }
 
-variable "vpc_connector" {
-  description = "VPC connector"
+variable "vpc_network_app" {
+  description = "VPC network"
+  type        = string
+}
+
+variable "vpc_subnet_app" {
+  description = "VPC subnet"
   type        = string
 }
 

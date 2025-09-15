@@ -2,22 +2,23 @@
 module "cloud_run_server_rails" {
   source = "../../modules/cloud_run"
 
-  service_name = "fluid-droplet-NAME"
-  region       = "us-west3"
+  service_name = var.cloud_run_app_name
+  region       = var.region
 
   environment       = "production"
-  project           = "fluid-droplet-NAME"
+  project           = var.project
   purpose_cloud_run = "web"
 
   # Service account email
   service_account_email = var.email_service_account
 
   # Scaling options
-  max_instances = 10
+  max_instances = 3
   min_instances = 1
 
-  # VPC connector NAT
-  vpc_connector = var.vpc_connector_cloud_run
+  # VPC network and subnet
+  vpc_network_app = var.vpc_network_cloud_run
+  vpc_subnet_app  = var.vpc_subnet_cloud_run
 
   # Cloud SQL instances to connect to the database
   cloud_sql_instances = var.cloud_sql_instances_cloud_run
@@ -34,4 +35,12 @@ module "cloud_run_server_rails" {
   # Environment variables
   environment_variables = var.environment_variables_cloud_run
 
+  # Depends on
+  depends_on = [
+    google_sql_database.database_production,
+    google_sql_database.database_production_queue,
+    google_sql_database.database_production_cache,
+    google_sql_database.database_production_cable,
+    google_sql_user.users
+  ]
 }

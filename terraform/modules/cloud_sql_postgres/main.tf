@@ -31,7 +31,7 @@ resource "google_sql_database_instance" "postgres" {
 
     ip_configuration {
       ipv4_enabled = var.ipv4_enabled # IPv4 enabled public access
-      # private_network = var.private_network
+      private_network = var.private_network_database
     }
 
     maintenance_window {

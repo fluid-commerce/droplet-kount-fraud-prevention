@@ -25,7 +25,10 @@ resource "google_cloud_run_v2_service" "cloud_run" {
     }
 
     vpc_access {
-      connector = var.vpc_connector
+      network_interfaces {
+        network     = var.vpc_network_app
+        subnetwork  = var.vpc_subnet_app
+      }
       egress    = "ALL_TRAFFIC"
     }
 

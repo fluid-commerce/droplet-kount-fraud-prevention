@@ -1,3 +1,4 @@
+# project variables
 variable "project_id" {
   description = "Project ID of the instance"
   type        = string
@@ -8,6 +9,7 @@ variable "region" {
   type        = string
 }
 
+# compute engine variables for jobs console
 variable "vm_name" {
   description = "Name of the virtual machine instance"
   type        = string
@@ -41,6 +43,38 @@ variable "purpose_compute_engine" {
 
 variable "email_service_account" {
   description = "Email of the service account"
+  type        = string
+}
+
+# Postgres variables
+variable "postgres_password_production_user" {
+  description = "Password of the production user"
+  type        = string
+  sensitive   = true
+}
+
+variable "postgres_name_instance" {
+  description = "Name of the production user"
+  type        = string
+}
+
+variable "postgres_name_database" {
+  description = "Name of the production database prefix"
+  type        = string
+}
+
+variable "postgres_ip_public_database" {
+  description = "IP public database"
+  type        = bool
+}
+
+variable "postgres_user_name" {
+  description = "User name of the production database"
+  type        = string
+}
+
+variable "postgres_private_network" {
+  description = "Private network database"
   type        = string
 }
 
@@ -80,12 +114,13 @@ variable "container_db_url_production_cable" {
   sensitive   = true
 }
 
-# variable module cloud_run fluid droplet 
+# variable module cloud_run fluid droplet
 
-variable "vpc_connector_cloud_run" {
-  description = "VPC connector"
+variable "cloud_run_app_name" {
+  description = "Name of the Cloud Run app"
   type        = string
 }
+
 
 variable "cloud_sql_instances_cloud_run" {
   description = "List of Cloud SQL instances"
@@ -97,3 +132,18 @@ variable "environment_variables_cloud_run" {
   type        = map(string)
 }
 
+# cloud run migrations
+variable "cloud_run_migrations_name" {
+  description = "Name of the migrations job"
+  type        = string
+}
+
+variable "vpc_network_cloud_run" {
+  description = "VPC network"
+  type        = string
+}
+
+variable "vpc_subnet_cloud_run" {
+  description = "VPC subnet"
+  type        = string
+}

@@ -14,7 +14,10 @@ resource "google_cloud_run_v2_job" "cloud_run_job" {
       }
 
       vpc_access {
-        connector = var.vpc_connector_job
+        network_interfaces {
+          network     = var.vpc_network_job
+          subnetwork  = var.vpc_subnet_job
+        }
         egress    = "ALL_TRAFFIC"
       }
 
