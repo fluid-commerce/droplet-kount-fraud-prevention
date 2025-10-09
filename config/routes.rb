@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   post "webhook", to: "webhooks#create", as: :webhook
 
+  post "callbacks/evaluate_order_risk_kount", to: "callbacks#evaluate_order_risk_kount", as: :evaluate_order_risk_kount
+
   namespace :admin do
     get "dashboard/index"
     resource :droplet, only: %i[ create update ]
