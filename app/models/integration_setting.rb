@@ -4,4 +4,5 @@ class IntegrationSetting < ApplicationRecord
   belongs_to :company
 
   validates :company_id, presence: true
+  store_accessor :credentials, :kount_api_key
 end
