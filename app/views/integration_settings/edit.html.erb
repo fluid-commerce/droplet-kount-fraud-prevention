@@ -15,7 +15,7 @@
       align-items: center;
       justify-content: center;
     }
-    
+
     .container {
       background: white;
       border-radius: 12px;
@@ -24,29 +24,29 @@
       max-width: 500px;
       width: 100%;
     }
-    
+
     .header {
       text-align: center;
       margin-bottom: 30px;
     }
-    
+
     .header h1 {
       color: #2d3748;
       margin: 0 0 10px 0;
       font-size: 28px;
       font-weight: 600;
     }
-    
+
     .header p {
       color: #718096;
       margin: 0;
       font-size: 16px;
     }
-    
+
     .form-group {
       margin-bottom: 25px;
     }
-    
+
     .form-group label {
       display: block;
       margin-bottom: 8px;
@@ -54,7 +54,7 @@
       font-weight: 500;
       font-size: 14px;
     }
-    
+
     .form-group input {
       width: 100%;
       padding: 12px 16px;
@@ -64,24 +64,24 @@
       transition: border-color 0.2s;
       box-sizing: border-box;
     }
-    
+
     .form-group input:focus {
       outline: none;
       border-color: #667eea;
       box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
-    
+
     .form-group input[type="password"] {
       font-family: monospace;
     }
-    
+
     .help-text {
       color: #718096;
       font-size: 14px;
       margin-top: 8px;
       line-height: 1.4;
     }
-    
+
     .submit-btn {
       width: 100%;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -94,35 +94,35 @@
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    
+
     .submit-btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
     }
-    
+
     .submit-btn:active {
       transform: translateY(0);
     }
-    
+
     .alert {
       padding: 12px 16px;
       border-radius: 8px;
       margin-bottom: 20px;
       font-size: 14px;
     }
-    
+
     .alert.notice {
       background: #f0fff4;
       color: #22543d;
       border: 1px solid #9ae6b4;
     }
-    
+
     .alert.alert {
       background: #fed7d7;
       color: #742a2a;
       border: 1px solid #feb2b2;
     }
-    
+
     .info-box {
       background: #f7fafc;
       border: 1px solid #e2e8f0;
@@ -130,32 +130,32 @@
       padding: 20px;
       margin-bottom: 25px;
     }
-    
+
     .info-box h3 {
       margin: 0 0 10px 0;
       color: #2d3748;
       font-size: 16px;
       font-weight: 600;
     }
-    
+
     .info-box p {
       margin: 0;
       color: #4a5568;
       font-size: 14px;
       line-height: 1.5;
     }
-    
+
     .checkbox-group {
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    
+
     .checkbox-group input[type="checkbox"] {
       width: auto;
       margin: 0;
     }
-    
+
     .checkbox-group label {
       margin: 0;
       display: inline;
@@ -188,9 +188,18 @@
 
     <%= form_with model: @integration_setting, url: integration_settings_path(token: params[:token]), local: true, method: :patch do |form| %>
       <%= form.hidden_field :dri, value: @dri %>
+
+      <div class="form-group">
+        <%= form.label :kount_client_id, "Kount Client ID" %>
+        <%= form.text_field :kount_client_id,
+            value: @integration_setting.kount_client_id,
+            placeholder: "Enter your Kount Client ID",
+            required: true %>
+      </div>
+
       <div class="form-group">
         <%= form.label :kount_api_key, "Kount API Key" %>
-        <%= form.password_field :kount_api_key, 
+        <%= form.text_field :kount_api_key,
             value: @integration_setting.kount_api_key,
             placeholder: "Enter your Kount API key",
             required: true %>
@@ -201,7 +210,7 @@
 
       <div class="form-group">
         <div class="checkbox-group">
-          <%= form.check_box :enabled, 
+          <%= form.check_box :enabled,
               { checked: @integration_setting.enabled? },
               "true", "false" %>
           <%= form.label :enabled, "Enable Kount fraud detection" %>

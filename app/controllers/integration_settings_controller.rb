@@ -4,9 +4,7 @@ class IntegrationSettingsController < ApplicationController
   before_action :set_company
   before_action :set_integration_setting
 
-  def edit
-    @dri = params[:dri]
-  end
+  def edit;end
 
   def update
     if @integration_setting.update(integration_setting_params)
@@ -23,6 +21,7 @@ private
   def set_company
     droplet_installation_uuid = params[:dri] || params[:integration_setting]&.dig(:dri)
     if droplet_installation_uuid.present?
+      @dri = droplet_installation_uuid
       @company = Company.find_by(droplet_installation_uuid:)
     else
       render json: { error: "Invalid droplet installation UUID" }, status: :unauthorized
@@ -40,6 +39,6 @@ private
   end
 
   def integration_setting_params
-    params.require(:integration_setting).permit(:enabled, :kount_api_key)
+    params.require(:integration_setting).permit(:enabled, :kount_client_id, :kount_api_key)
   end
 end
