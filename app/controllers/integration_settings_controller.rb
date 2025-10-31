@@ -39,6 +39,6 @@ private
   end
 
   def integration_setting_params
-    params.require(:integration_setting).permit(:enabled, :kount_client_id, :kount_api_key)
+    params.require(:integration_setting).permit(:enabled, :kount_api_key)
   end
 end
